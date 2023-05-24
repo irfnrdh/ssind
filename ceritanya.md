@@ -1,4 +1,7 @@
-aku pengen lihat diantara satu indonesia ini, website mana sih yang paling bagus untuk tingkat kabupaten dan kota. untuk menguji itu semua tentu aku harus cari dulu alamat website seluruh kabupaten di indonesia. 
+aku pengen lihat diantara satu indonesia ini, website mana sih yang paling bagus untuk tingkat kabupaten dan kota. 
+
+untuk menguji itu semua tentu aku harus cari dulu alamat website seluruh kabupaten di indonesia.
+
 selanjutnya aku ingin itu semua diambil screenshotnya. lalu aku akan biarkan kalian yang menilainya.
 
 beberapa hal yang ada dipikiran aku :
@@ -17,7 +20,9 @@ beberapa hal yang ada dipikiran aku :
 12. bagaimana jika daftar web itu diimport lewat file json terpisah
 13. bagaimana jika banyaknya screen size itu mengambil screenshot sampai habis fullpage
 14. bagaimana jika semua screenshot di masukan ke dalam satu file pdf atau html untuk laporan
+
 ---[TO-DO] :
+
 15. bagaimana jika halamannya ada loginnya? 
 16. bagaimana jika hasil tangkapan otomatis mengirimkan ke instagram atau sosial media lainnya
 17. bagaimana jika otomatis berjalan mengecek setiap kali ada perubahan tampilan di website
@@ -34,8 +39,9 @@ dari itu semua akhirnya aku dapatkan satu racikan kode.
 Apa gunanya?
 1. Laporan
 2. Mantau
-3. 
+3. Testing
 
+# instalasi
 
 $ pip install --editable .
 $ ssind
