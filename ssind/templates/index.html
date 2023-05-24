@@ -1,0 +1,18 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screenshot Capture</title>
+</head>
+<body>
+    <h1>Screenshot Capture</h1>
+    <form action="/capture" method="POST">
+        <label for="config">Website Config JSON:</label>
+        <input type="text" name="config" id="config" required><br>
+        <label for="clear">Clear Screenshots Folder:</label>
+        <input type="checkbox" name="clear" id="clear"><br>
+        <input type="submit" value="Capture Screenshots">
+    </form>
+</body>
+</html>

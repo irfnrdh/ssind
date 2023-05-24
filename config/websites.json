@@ -1,0 +1,12 @@
+{
+  "websites": [
+    {
+      "name": "google",
+      "url": "https://www.google.com"
+    },
+    {
+      "name": "retasin",
+      "url": "https://www.retasin.com"
+    }
+  ]
+}
