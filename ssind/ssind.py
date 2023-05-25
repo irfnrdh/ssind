@@ -3,6 +3,7 @@ import os
 import json
 import base64
 import pdfkit
+import requests
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -42,6 +43,9 @@ def capture_screenshots(clear, config, report):
     # Create base directory to store the screenshots
     os.makedirs(base_directory, exist_ok=True)
 
+    # Create a log file
+    log_file = open('website_status.log', 'w')
+
     # Set up Chrome options
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode
@@ -60,6 +64,7 @@ def capture_screenshots(clear, config, report):
     for website in tqdm(websites, desc="Capturing Screenshots"):
         name = website['name']
         url = website['url']
+        screenshot = website['screenshot']
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         website_directory = os.path.join(base_directory, name, timestamp)
         os.makedirs(website_directory, exist_ok=True)
@@ -71,31 +76,67 @@ def capture_screenshots(clear, config, report):
         driver = webdriver.Chrome(service=service, options=chrome_options)
 
         try:
+
+            # Check the website status and measure the loading time
+            start_time = datetime.now()
+            try:
+                response = requests.get(url)
+                status_code = response.status_code
+            except requests.exceptions.RequestException:
+                status_code = "Error"
+            end_time = datetime.now()
+            loading_time = end_time - start_time
+
+            # Log the website status and loading time in the terminal and log file
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            log_entry = f"{timestamp} - {name} ({url}): {status_code}, Loading Time: {loading_time}"
+            # print(log_entry)
+            log_file.write(log_entry + '\n')
+
+
             driver.get(url)
             driver.implicitly_wait(10)  # Wait for the page to load completely
 
-            # Capture screenshots for each screen size
-            screen_sizes = [(320, 480, "apple-ipad-air-4-medium.png"), (768, 1024, "apple-ipad-air-4-medium.png"), (1440, 900, "apple-ipad-air-4-medium.png"), (1920, 1080, "apple-ipad-air-4-medium.png")]
-            
-            for index, (width, height, mock) in enumerate(screen_sizes):
+            # Capture screenshots for each screen size on devices data json            
+            devices_data = load_devices_from_json(os.path.join('mockups', 'devices.json'))
+            screenshot_paths = []
+
+            for index, (platform, name, width, height, mockup_path ) in enumerate(devices_data):
                 driver.set_window_size(width, height)
 
                 # without mockup
-                screenshot_name = f'screenshot_{index}_{width}x{height}_{timestamp}.png'
+                screenshot_name = f'screenshot_{index}_{platform}_{name}_{width}x{height}_{timestamp}.png'
                 screenshot_path = os.path.join(website_directory, screenshot_name)
                 driver.save_screenshot(screenshot_path)
 
                 # with mockup
-                screenshot_mockup_name = f'screenshot_mockup_{index}_{width}x{height}_{timestamp}.png'
+                screenshot_mockup_name = f'screenshot_mockup_{index}_{platform}_{name}_{width}x{height}_{timestamp}.png'
                 screenshot_mockup_path = os.path.join(website_directory, screenshot_mockup_name)
-                mockup_folder = os.path.join('mockups', mock)
+                mockup_folder = os.path.join('mockups', mockup_path)
                 add_mockup_to_screenshot(screenshot_path, mockup_folder, screenshot_mockup_path)
 
+
+                # Save the screenshot paths to a list
+                screenshot_paths.append(screenshot_mockup_path)
+
+                # screenshot = screenshot_paths[-1] if screenshot_paths else ""  # Update the 'screenshot' field with the last screenshot path or empty string
+
+            # Update the 'screenshot' field in the 'websites' list with the screenshot paths
+            website['screenshot'] = screenshot_paths[-1] if screenshot_paths else ""
+
             click.echo(f"  🗸 Screenshots captured for website: {url}")
+
+            
+
+
         except Exception as e:
             click.echo(f"Error capturing screenshots for website: {url} ({e})")
         finally:
             driver.quit()
+        
+    # Update the 'website.json' file
+    with open(os.path.join(config_folder, config), 'w') as file:
+        json.dump(websites, file, indent=2)
 
     print("\nSelesai... \n")
 
@@ -103,10 +144,15 @@ def capture_screenshots(clear, config, report):
         generate_pdf_report(base_directory)
 
 
-def load_websites_from_json(file_path):
+def load_websites_from_json(file_path):       
     with open(file_path) as json_file:
         data = json.load(json_file)
-        return data['websites']
+        return data
+
+def load_devices_from_json(json_path):
+    with open(json_path, 'r') as file:
+        data = json.load(file)
+    return data['device']
 
 def clear_screenshots_folder():
     # Remove all files and directories in the screenshots folder

@@ -1,0 +1,15 @@
+{
+	"device": [
+			["android","Samsung Galaxy S20", 360, 800,"mockup.png"],
+			["android","Xiomi Mi 11i", 360, 800,"mockup.png"],
+			["android","Huawei P30 Pro", 360, 780,"mockup.png"],
+			["android","Google Pixel5",360,780,"mockup.png"],
+			["android","Oneplus Nord 2",360,780,"mockup.png"],
+			["android","Galaxy Z Flip3",360,780,"mockup.png"],
+			["android","OPPO Find X3 PRO",360,780,"mockup.png"],
+			["android","Galaxy A12",360,780,"mockup.png"],
+			["android","Galaxy S21 Ultra",360,780,"mockup.png"],
+			["android","Google Pixel 6 PRO",360,780,"mockup.png"],
+			["android","Xiaomi 12",360,780,"mockup.png"]
+	]
+}

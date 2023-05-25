@@ -1,16 +1,17 @@
-{
-  "websites": [
-    {
-      "name": "google",
-      "url": "https://www.google.com"
-    },
-    {
-      "name": "retasin",
-      "url": "https://www.retasin.com"
-    },
-    {
-      "name": "kodekeras",
-      "url": "https://kodekeras.my.id"
-    }
-  ]
-}
+[
+  {
+    "name": "google",
+    "url": "https://www.google.com",
+    "screenshot": "../screenshots/google/20230525123335/screenshot_mockup_10_android_Xiaomi 12_360x780_2023-05-25 12:33:36.png"
+  },
+  {
+    "name": "retasin",
+    "url": "https://www.retasin.com",
+    "screenshot": "../screenshots/retasin/20230525123340/screenshot_mockup_10_android_Xiaomi 12_360x780_2023-05-25 12:33:42.png"
+  },
+  {
+    "name": "kodekeras",
+    "url": "https://kodekeras.my.id",
+    "screenshot": "../screenshots/kodekeras/20230525123348/screenshot_mockup_10_android_Xiaomi 12_360x780_2023-05-25 12:33:50.png"
+  }
+]

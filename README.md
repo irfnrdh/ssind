@@ -8,6 +8,8 @@ $ ssind_
 
     filosofinya jangan direbitin.
 
+    selengkapnya ada di > ceritaind > buatind
+
 Penggunaan:
 
     [INSTALL MANUAL]
