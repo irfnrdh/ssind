@@ -1,15 +1,22 @@
 {
-	"device": [
-			["android","Samsung Galaxy S20", 360, 800,"mockup.png"],
-			["android","Xiomi Mi 11i", 360, 800,"mockup.png"],
-			["android","Huawei P30 Pro", 360, 780,"mockup.png"],
-			["android","Google Pixel5",360,780,"mockup.png"],
-			["android","Oneplus Nord 2",360,780,"mockup.png"],
-			["android","Galaxy Z Flip3",360,780,"mockup.png"],
-			["android","OPPO Find X3 PRO",360,780,"mockup.png"],
-			["android","Galaxy A12",360,780,"mockup.png"],
-			["android","Galaxy S21 Ultra",360,780,"mockup.png"],
-			["android","Google Pixel 6 PRO",360,780,"mockup.png"],
-			["android","Xiaomi 12",360,780,"mockup.png"]
+	"devices": [
+	  {
+		"platform": "Generic",
+		"name": "FHD",
+		"width": 1920,
+		"height": 1080,
+		"physical_width": 5.5,
+		"physical_height": 2.9,
+		"mockup_path":"mockup.png"
+	  },
+	  {
+		"platform": "Generic",
+		"name": "HD",
+		"width": 1280,
+		"height": 720,
+		"physical_width": 4.7,
+		"physical_height": 2.6,
+		"mockup_path":"mockup.png"
+	  }
 	]
-}
+  }
