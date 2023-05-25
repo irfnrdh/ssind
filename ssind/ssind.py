@@ -11,6 +11,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from tqdm import tqdm
 from PIL import Image, ImageDraw
+import lighthouse
+
 
 # yay -S wkhtmltopdf python-pip
 
@@ -94,10 +96,12 @@ def capture_screenshots(clear, config, report):
 
             # Log the website status and loading time in the terminal and log file
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            log_entry = f"{timestamp} - {name} ({url}): {status_code}, Loading Time: {loading_time}"
+            Score = lighthouse.webcorevitals(url)
+            log_entry = f"{timestamp} - {name} ({url}): {status_code}, Loading Time: {loading_time}, Score: {Score}"
             # print(log_entry)
             log_file.write(log_entry + '\n')
 
+            
 
             driver.get(url)
             driver.implicitly_wait(10)  # Wait for the page to load completely
@@ -143,18 +147,22 @@ def capture_screenshots(clear, config, report):
                 mockup_folder = os.path.join('mockups', mockup_path)
                 add_mockup_to_screenshot(screenshot_path, mockup_folder, screenshot_mockup_path)
 
-                # Risize
-                # Open the screenshot image
-                screenshot = Image.open(screenshot_path)
-
-                # Resize the image to the effective resolution
-                resized_screenshot = screenshot.resize((int(effective_width), int(effective_height)))
-
-                # Save the resized image
-                resized_screenshot.save(f"../export/resized_screenshots/{platform}_{name}_resized.png")
-
                 # Save the screenshot paths to a list
                 screenshot_paths.append(screenshot_mockup_path)
+
+                # Open the screenshot image
+                screenshot = Image.open(screenshot_path)
+                
+                # Resize the captured screenshots
+                for screenshot_path in screenshot_paths:
+                
+                    # Resize the image to the effective resolution
+                    resized_screenshot = screenshot.resize((int(effective_width), int(effective_height)))
+
+                    # Save the resized image
+                    resized_screenshot.save(f"../export/resized_screenshots/{index}_{platform}_{name}_resized.png")
+
+                
 
                 # screenshot = screenshot_paths[-1] if screenshot_paths else ""  # Update the 'screenshot' field with the last screenshot path or empty string
 
@@ -236,8 +244,8 @@ def clear_screenshots_folder():
 
 def clear_log_file():
     # Clear the content of the log file
-    open('website_status.log', 'w').close()
-    print("Log file cleared.")
+    # open('../export/website_status.log', 'w').close()
+    print("Log file deative to clear.")
 
 def generate_pdf_report(base_directory):
 
@@ -341,8 +349,6 @@ def calculate_pixel_density(screen_width, screen_height, physical_width, physica
         pixel_density = 1.0
 
     return pixel_density
-
-
 
 def main():
     click.echo(BANNER)
