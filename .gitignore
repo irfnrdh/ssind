@@ -18,7 +18,7 @@ lib/
 lib64/
 parts/
 sdist/
-screenshots/
+
 var/
 wheels/
 share/python-wheels/
@@ -26,6 +26,10 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# SSIND
+report.pdf
+screenshots/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
