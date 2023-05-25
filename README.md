@@ -1,3 +1,6 @@
+[![Create a new patch release](https://github.com/irfnrdh/ssind/actions/workflows/release.yml/badge.svg)](https://github.com/irfnrdh/ssind/actions/workflows/release.yml)
+
+```
 $ ssind_
 
     ssind adalah sebuah alat untuk menangkap layar
@@ -17,3 +20,4 @@ Penggunaan:
     [INSTALL DARI PY]
 
     $ pip install ssind
+ ```
