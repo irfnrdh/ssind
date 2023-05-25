@@ -22,7 +22,7 @@ BANNER = """
 ╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═════╝ 
 
 Ambil Unlimited ScreenShoot Sambil Ngopi 
-v.0.1.0 - by irfnrdh                      
+v.0.1.1 - by irfnrdh                      
 """
 
 base_directory = '../screenshots'
@@ -76,16 +76,20 @@ def capture_screenshots(clear, config, report):
 
             # Capture screenshots for each screen size
             screen_sizes = [(320, 480, "apple-ipad-air-4-medium.png"), (768, 1024, "apple-ipad-air-4-medium.png"), (1440, 900, "apple-ipad-air-4-medium.png"), (1920, 1080, "apple-ipad-air-4-medium.png")]
+            
             for index, (width, height, mock) in enumerate(screen_sizes):
                 driver.set_window_size(width, height)
+
+                # without mockup
                 screenshot_name = f'screenshot_{index}_{width}x{height}_{timestamp}.png'
                 screenshot_path = os.path.join(website_directory, screenshot_name)
-
-                screenshot_mockup_name = f'screenshot_mockup_{index}_{width}x{height}_{timestamp}.png'
-                screenshot_mockup_path = os.path.join(website_directory, screenshot_name)
-
                 driver.save_screenshot(screenshot_path)
-                add_mockup_to_screenshot(screenshot_path, mock, screenshot_mockup_path)
+
+                # with mockup
+                screenshot_mockup_name = f'screenshot_mockup_{index}_{width}x{height}_{timestamp}.png'
+                screenshot_mockup_path = os.path.join(website_directory, screenshot_mockup_name)
+                mockup_folder = os.path.join('mockups', mock)
+                add_mockup_to_screenshot(screenshot_path, mockup_folder, screenshot_mockup_path)
 
             click.echo(f"  🗸 Screenshots captured for website: {url}")
         except Exception as e:
@@ -160,7 +164,7 @@ def add_mockup_to_screenshot(screenshot_path, mockup_path, output_path):
     # Create a mask with rounded corners
     mask = Image.new('L', screenshot.size, 0)
     mask_draw = ImageDraw.Draw(mask)
-    mask_draw.rounded_rectangle([(0, 0), screenshot.size], radius=20, fill="green")
+    mask_draw.rounded_rectangle([(0, 0), screenshot.size], radius=20, fill=255)
 
     # Apply the mask to the mockup image
     mockup_with_rounded_corners = Image.new('RGBA', screenshot.size)

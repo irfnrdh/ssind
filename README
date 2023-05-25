@@ -1,0 +1,19 @@
+$ ssind_
+
+    ssind adalah sebuah alat untuk menangkap layar
+    secara otomatis tanpa batas dengan mudah.
+
+    filosofinya jangan direbitin.
+
+Penggunaan:
+
+    [INSTALL MANUAL]
+    
+    $ git clone https://github.com/irfnrdh/ssind.git
+    $ cd ssind
+    $ pip install --editable . 
+    $ ssind --help
+
+    [INSTALL DARI PY]
+
+    $ pip install ssind

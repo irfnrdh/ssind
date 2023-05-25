@@ -7,6 +7,7 @@ setup(
     install_requires=[
         'Flask',
         'pdfkit',
+        'tqdm',
         # Add any other dependencies required by your application
     ],
     entry_points={
