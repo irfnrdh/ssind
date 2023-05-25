@@ -23,32 +23,3 @@ Penggunaan:
 
     $ pip install ssind
  ```
- 
- Direktori: 
-```sh
-╭─irfnrdh@0day /home/irfnrdh/Playgrounds/ssind  ‹system›  <main*> 
-╰─$ tree
-.
-├── ceritaind.md
-├── config
-│   ├── aceh.json
-│   └── websites.json
-├── LICENSE
-├── pyproject.toml
-├── README.md
-├── screenshots
-├── setup.py
-└── ssind
-    ├── app.py
-    ├── __init__.py
-    ├── mockups
-    │   ├── devices.json
-    │   └── mockup.png
-    ├── run.py
-    ├── ssind.py
-    ├── templates
-    │   └── index.html
-    └── website_status.log
-
-6 directories, 15 files
-```
