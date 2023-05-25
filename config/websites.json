@@ -2,16 +2,16 @@
   {
     "name": "google",
     "url": "https://www.google.com",
-    "screenshot": "../screenshots/google/20230525123335/screenshot_mockup_10_android_Xiaomi 12_360x780_2023-05-25 12:33:36.png"
+    "screenshot": "../export/screenshots/google/20230525221903/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-25 22:19:04.png"
   },
   {
     "name": "retasin",
     "url": "https://www.retasin.com",
-    "screenshot": "../screenshots/retasin/20230525123340/screenshot_mockup_10_android_Xiaomi 12_360x780_2023-05-25 12:33:42.png"
+    "screenshot": "../export/screenshots/retasin/20230525221913/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-25 22:19:14.png"
   },
   {
     "name": "kodekeras",
     "url": "https://kodekeras.my.id",
-    "screenshot": "../screenshots/kodekeras/20230525123348/screenshot_mockup_10_android_Xiaomi 12_360x780_2023-05-25 12:33:50.png"
+    "screenshot": "../export/screenshots/kodekeras/20230525221926/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-25 22:19:27.png"
   }
 ]
