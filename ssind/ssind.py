@@ -27,8 +27,9 @@ Ambil Unlimited ScreenShoot Sambil Ngopi
 v.0.1.1 - by irfnrdh                      
 """
 
-base_directory = '../screenshots'
-resized_directory = '../resized_screenshots'
+base_directory = '../export/screenshots'
+resized_directory = '../export/resized_screenshots'
+report_directory = "../export/report"
 
 @click.command()
 @click.option('--clear', is_flag=True, help='Clear screenshots folder')
@@ -48,7 +49,7 @@ def capture_screenshots(clear, config, report):
 
 
     # Create a log file
-    log_file = open('website_status.log', 'w')
+    log_file = open('../export/website_status.log', 'w')
 
     # Set up Chrome options
     chrome_options = Options()
@@ -127,7 +128,7 @@ def capture_screenshots(clear, config, report):
                 driver.set_window_size(width, height)
 
                 # Display the effective resolution in the terminal
-                click.echo(f"Effective Resolution - Width: {effective_width}, Height: {effective_height}, Pixel Density {pixel_density}")
+                # click.echo(f"Effective Resolution - Width: {effective_width}, Height: {effective_height}, Pixel Density {pixel_density}")
 
                 # Capture the screenshot
 
@@ -150,7 +151,7 @@ def capture_screenshots(clear, config, report):
                 resized_screenshot = screenshot.resize((int(effective_width), int(effective_height)))
 
                 # Save the resized image
-                resized_screenshot.save(f"../resized_screenshots/{platform}_{name}_resized.png")
+                resized_screenshot.save(f"../export/resized_screenshots/{platform}_{name}_resized.png")
 
                 # Save the screenshot paths to a list
                 screenshot_paths.append(screenshot_mockup_path)
@@ -162,9 +163,6 @@ def capture_screenshots(clear, config, report):
             
             
             click.echo(f"  🗸 Screenshots captured for website: {url}")
-
-            
-
 
         except Exception as e:
             click.echo(f"Error capturing screenshots for website: {url} ({e})")
@@ -186,9 +184,31 @@ def load_websites_from_json(file_path):
         return data
 
 def load_devices_from_json(json_path):
-    with open(json_path, 'r') as file:
-        data = json.load(file)
-    return data['devices']
+    with open(json_path) as json_file:
+        data = json.load(json_file)
+        devices_data = data['devices']
+
+        devices = []
+        for platform, platform_devices in devices_data.items():
+            for device in platform_devices:
+                name = device['name']
+                width = int(device['width'])
+                height = int(device['height'])
+                physical_width = float(device['physical_width']) if device['physical_width'] is not None else 0.0
+                physical_height = float(device['physical_height']) if device['physical_height'] is not None else 0.0
+                mockup_path = device['mockup_path']
+
+                devices.append({
+                    'platform': platform,
+                    'name': name,
+                    'width': width,
+                    'height': height,
+                    'physical_width': physical_width,
+                    'physical_height': physical_height,
+                    'mockup_path': mockup_path
+                })
+
+        return devices
 
 def clear_screenshots_folder():
     # Remove all files and directories in the screenshots folder
@@ -197,13 +217,22 @@ def clear_screenshots_folder():
             os.remove(os.path.join(root, file))
         for dir in dirs:
             os.rmdir(os.path.join(root, dir))
-    # Remove all files and directories in the screenshots folder
+
+    # Remove all files and directories in the resize folder
     for root, dirs, files in os.walk(resized_directory, topdown=False):
         for file in files:
             os.remove(os.path.join(root, file))
         for dir in dirs:
             os.rmdir(os.path.join(root, dir))
-    print("Screenshots folder cleared.")
+    print("Resized folder cleared.")
+
+    # Remove all files and directories in the report folder
+    for root, dirs, files in os.walk(report_directory, topdown=False):
+        for file in files:
+            os.remove(os.path.join(root, file))
+        for dir in dirs:
+            os.rmdir(os.path.join(root, dir))
+    print("Report folder cleared.")
 
 def clear_log_file():
     # Clear the content of the log file
@@ -211,6 +240,15 @@ def clear_log_file():
     print("Log file cleared.")
 
 def generate_pdf_report(base_directory):
+
+    pdfkit_options = {
+        'page-size': 'A4',
+        'margin-top': '0mm',
+        'margin-right': '0mm',
+        'margin-bottom': '0mm',
+        'margin-left': '0mm',
+    }
+
     click.echo('Generating PDF report...')
     screenshot_files = []
     for root, _, files in os.walk(base_directory):
@@ -219,19 +257,42 @@ def generate_pdf_report(base_directory):
                 screenshot_files.append(os.path.join(root, file))
     screenshot_files.sort()
 
-    html_content = "<html><body>"
+    html_content = """
+        <html>
+        <head>
+            <style>
+                .report-image {
+                    max-width: 100%;
+                    margin-bottom: 20px;
+                }
+                body {
+                    font-family: Arial, sans-serif;
+                    font-size: 12px;
+                    color: #333;
+                    padding: 20px;
+                }
+            </style>
+        </head>
+        <body>
+    """
+
     for screenshot_file in screenshot_files:
         with open(screenshot_file, "rb") as file:
             screenshot_data = base64.b64encode(file.read()).decode("utf-8")
-        html_content += f'<img src="data:image/png;base64,{screenshot_data}" /><br><br>'
-    html_content += "</body></html>"
+        html_content += f'<img class="report-image" src="data:image/png;base64,{screenshot_data}" /><br><br>'
+    html_content += """
+        </body>
+        </html>
+    """
 
-    html_file = "report.html"
+    os.makedirs(report_directory, exist_ok=True)
+    html_file = os.path.join(report_directory, f'report_{datetime.now().strftime("%Y%m%d%H%M%S")}.html')
     with open(html_file, "w") as file:
         file.write(html_content)
 
-    pdf_file = f'../report_{datetime.now().strftime("%Y%m%d%H%M%S")}.pdf'
-    pdfkit.from_file(html_file, pdf_file)
+    pdf_file = os.path.join(report_directory, f'report_{datetime.now().strftime("%Y%m%d%H%M%S")}.pdf')
+    pdfkit.from_file(html_file, pdf_file, options=pdfkit_options)
+
 
     # os.remove(html_file)
 
@@ -272,9 +333,16 @@ def calculate_effective_resolution(width, height, pixel_density):
     return effective_width, effective_height
 
 def calculate_pixel_density(screen_width, screen_height, physical_width, physical_height):
-    # Calculate the pixel density based on the screen and physical dimensions
-    pixel_density = screen_width / physical_width
+    if physical_width != 0 and physical_height != 0:
+        # Calculate the pixel density based on the screen and physical dimensions
+        pixel_density = screen_width / physical_width
+    else:
+        # Handle the case where physical_width or physical_height is zero
+        pixel_density = 1.0
+
     return pixel_density
+
+
 
 def main():
     click.echo(BANNER)
@@ -283,3 +351,4 @@ def main():
 if __name__ == '__main__':
     main()
     
+

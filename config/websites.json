@@ -2,16 +2,16 @@
   {
     "name": "google",
     "url": "https://www.google.com",
-    "screenshot": "../screenshots/google/20230525164624/screenshot_mockup_1_Generic_HD_1280x720_2023-05-25 16:46:25.png"
+    "screenshot": "../export/screenshots/google/20230525221903/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-25 22:19:04.png"
   },
   {
     "name": "retasin",
     "url": "https://www.retasin.com",
-    "screenshot": "../screenshots/retasin/20230525164627/screenshot_mockup_1_Generic_HD_1280x720_2023-05-25 16:46:30.png"
+    "screenshot": "../export/screenshots/retasin/20230525221913/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-25 22:19:14.png"
   },
   {
     "name": "kodekeras",
     "url": "https://kodekeras.my.id",
-    "screenshot": "../screenshots/kodekeras/20230525164633/screenshot_mockup_1_Generic_HD_1280x720_2023-05-25 16:46:35.png"
+    "screenshot": "../export/screenshots/kodekeras/20230525221926/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-25 22:19:27.png"
   }
 ]

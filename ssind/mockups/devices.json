@@ -1,22 +1,163 @@
 {
-	"devices": [
-	  {
-		"platform": "Generic",
-		"name": "FHD",
-		"width": 1920,
-		"height": 1080,
-		"physical_width": 5.5,
-		"physical_height": 2.9,
-		"mockup_path":"mockup.png"
-	  },
-	  {
-		"platform": "Generic",
-		"name": "HD",
-		"width": 1280,
-		"height": 720,
-		"physical_width": 4.7,
-		"physical_height": 2.6,
-		"mockup_path":"mockup.png"
-	  }
-	]
+    "devices": {
+      "mobile": [
+        {
+          "name": "360×800",
+          "width": 360,
+          "height": 800,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "390×844",
+          "width": 390,
+          "height": 844,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "414×896",
+          "width": 414,
+          "height": 896,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "412×915",
+          "width": 412,
+          "height": 915,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "393×873",
+          "width": 393,
+          "height": 873,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "360×780",
+          "width": 360,
+          "height": 780,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "360×640",
+          "width": 360,
+          "height": 640,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        }
+      ],
+      "tablet": [
+        {
+          "name": "768×1024",
+          "width": 768,
+          "height": 1024,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "810×1080",
+          "width": 810,
+          "height": 1080,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "800×1280",
+          "width": 800,
+          "height": 1280,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "1280×800",
+          "width": 1280,
+          "height": 800,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "601×962",
+          "width": 601,
+          "height": 962,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "820×1180",
+          "width": 820,
+          "height": 1180,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        }
+      ],
+      "desktop": [
+        {
+          "name": "1920×1080",
+          "width": 1920,
+          "height": 1080,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "1366×768",
+          "width": 1366,
+          "height": 768,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "1536×864",
+          "width": 1536,
+          "height": 864,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "1280×720",
+          "width": 1280,
+          "height": 720,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "1440×900",
+          "width": 1440,
+          "height": 900,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        },
+        {
+          "name": "1600×900",
+          "width": 1600,
+          "height": 900,
+          "physical_width": null,
+          "physical_height": null,
+          "mockup_path": "mockup.png"
+        }
+      ]
+    }
   }
+  
