@@ -1,0 +1,17 @@
+[
+  {
+    "name": "google",
+    "url": "https://www.google.com",
+    "screenshot": "export/screenshots/google/20230526152539/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-26 15:25:41.png"
+  },
+  {
+    "name": "retasin",
+    "url": "https://www.retasin.com",
+    "screenshot": "export/screenshots/retasin/20230526152612/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-26 15:26:14.png"
+  },
+  {
+    "name": "kodekeras",
+    "url": "https://kodekeras.my.id",
+    "screenshot": "export/screenshots/kodekeras/20230526152656/screenshot_mockup_18_desktop_1600\u00d7900_1600x900_2023-05-26 15:26:58.png"
+  }
+]
