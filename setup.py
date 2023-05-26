@@ -6,7 +6,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='ssind',
-    version='0.1.1',
+    version='0.1.3',
     description='Take Unlimited ScreenShot Automation and make a report',
     long_description=long_description,
     long_description_content_type='text/markdown',
