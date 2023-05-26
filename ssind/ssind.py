@@ -29,9 +29,10 @@ Ambil Unlimited ScreenShoot Sambil Ngopi
 v.0.1.1 - by irfnrdh                      
 """
 
-base_directory = '../export/screenshots'
-resized_directory = '../export/resized_screenshots'
-report_directory = "../export/report"
+base_directory = 'export/screenshots'
+resized_directory = 'export/resized_screenshots'
+report_directory = 'export/report'
+config_folder = 'config'
 
 @click.command()
 @click.option('--clear', is_flag=True, help='Clear screenshots folder')
@@ -51,7 +52,7 @@ def capture_screenshots(clear, config, report):
 
 
     # Create a log file
-    log_file = open('../export/website_status.log', 'w')
+    log_file = open('export/website_status.log', 'w')
 
     # Set up Chrome options
     chrome_options = Options()
@@ -61,8 +62,8 @@ def capture_screenshots(clear, config, report):
     chrome_driver_path = '/usr/bin/chromedriver'
 
     # Get the absolute path to the 'config' folder
-    config_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config'))
-    websites = load_websites_from_json(os.path.join(config_folder, config))
+    # config_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config'))
+    websites = load_websites_from_json(os.path.join('config', config))
 
     if config == "websites.json":
         click.echo(f'Config menggunakan data : "{config}" \n')
@@ -160,7 +161,7 @@ def capture_screenshots(clear, config, report):
                     resized_screenshot = screenshot.resize((int(effective_width), int(effective_height)))
 
                     # Save the resized image
-                    resized_screenshot.save(f"../export/resized_screenshots/{index}_{platform}_{name}_resized.png")
+                    resized_screenshot.save(f"export/resized_screenshots/{index}_{platform}_{name}_resized.png")
 
                 
 
@@ -244,7 +245,7 @@ def clear_screenshots_folder():
 
 def clear_log_file():
     # Clear the content of the log file
-    # open('../export/website_status.log', 'w').close()
+    # open('export/website_status.log', 'w').close()
     print("Log file deative to clear.")
 
 def generate_pdf_report(base_directory):
